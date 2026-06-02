@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFA L1 Trainer · Exam Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue-50: #f0f6ff;
+  --blue-100: #dbeafe;
+  --blue-200: #bfdbfe;
+  --blue-400: #60a5fa;
+  --blue-500: #3b82f6;
+  --blue-600: #2563eb;
+  --blue-700: #1d4ed8;
+  --blue-900: #1e3a8a;
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --white: #ffffff;
+  --green: #10b981;
+  --green-light: #d1fae5;
+  --red: #ef4444;
+  --red-light: #fee2e2;
+  --gold: #f59e0b;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--slate-50);
+  color: var(--slate-800);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--slate-200);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 18px; font-weight: 800; color: var(--slate-900);
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-900));
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 16px; font-weight: 800;
+}
+
+.nav-links { display: flex; gap: 4px; }
+
+.nav-link {
+  padding: 6px 14px; border-radius: 8px;
+  font-size: 14px; font-weight: 500; color: var(--slate-600);
+  text-decoration: none; transition: all 0.15s;
+}
+
+.nav-link:hover { background: var(--blue-50); color: var(--blue-600); }
+.nav-link.active { background: var(--blue-50); color: var(--blue-600); font-weight: 600; }
+
+.nav-cta {
+  background: var(--blue-600); color: white;
+  padding: 8px 20px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  border: none; cursor: pointer; text-decoration: none;
+  transition: background 0.15s;
+}
+.nav-cta:hover { background: var(--blue-700); }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, var(--blue-900) 0%, var(--blue-700) 50%, var(--blue-500) 100%);
+  padding: 80px 32px;
+  position: relative; overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-inner {
+  max-width: 1100px; margin: 0 auto;
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.15); color: white;
+  border: 1px solid rgba(255,255,255,0.25);
+  padding: 5px 12px; border-radius: 99px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 48px; font-weight: 800; color: white;
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.hero h1 em {
+  font-family: 'Lora', serif; font-style: italic;
+  font-weight: 400; color: var(--blue-200);
+}
+
+.hero-desc {
+  font-size: 17px; color: rgba(255,255,255,0.8);
+  line-height: 1.7; margin-bottom: 32px; max-width: 440px;
+}
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn-white {
+  background: white; color: var(--blue-700);
+  padding: 12px 24px; border-radius: 10px;
+  font-size: 15px; font-weight: 700;
+  border: none; cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.15s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+}
+.btn-white:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,0.2); }
+
+.btn-ghost {
+  background: rgba(255,255,255,0.12); color: white;
+  padding: 12px 24px; border-radius: 10px;
+  font-size: 15px; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.3);
+  cursor: pointer; text-decoration: none;
+  display: inline-block; transition: all 0.15s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+/* HERO CARDS */
+.hero-cards { display: flex; flex-direction: column; gap: 12px; }
+
+.hero-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 14px; padding: 16px 20px;
+  display: flex; align-items: center; gap: 16px;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+}
+
+.hero-card:hover { background: rgba(255,255,255,0.18); transform: translateX(4px); }
+
+.hero-card-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+
+.hero-card-label { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; text-transform: uppercase; }
+.hero-card-val { font-size: 18px; font-weight: 700; color: white; }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: white; border-bottom: 1px solid var(--slate-200);
+  padding: 20px 32px;
+}
+
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; divide: var(--slate-200);
+}
+
+.stat-item {
+  text-align: center; padding: 8px 0;
+  border-right: 1px solid var(--slate-200);
+}
+.stat-item:last-child { border-right: none; }
+
+.stat-num {
+  font-size: 28px; font-weight: 800; color: var(--blue-600);
+  line-height: 1; display: block;
+}
+
+.stat-label {
+  font-size: 12px; color: var(--slate-500); font-weight: 500;
+  margin-top: 4px; display: block;
+}
+
+/* ── MAIN WRAP ── */
+.main { max-width: 1100px; margin: 0 auto; padding: 48px 32px; }
+
+/* ── SECTION HEADER ── */
+.sec-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.sec-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue-600);
+  margin-bottom: 4px;
+}
+
+.sec-title {
+  font-size: 26px; font-weight: 800; color: var(--slate-900);
+  letter-spacing: -0.02em;
+}
+
+.sec-desc {
+  font-size: 14px; color: var(--slate-500); margin-top: 4px;
+}
+
+/* ── TRAINER ── */
+.trainer-layout {
+  display: grid; grid-template-columns: 280px 1fr; gap: 24px;
+  align-items: start;
+}
+
+/* MODE PICKER */
+.mode-picker {
+  background: white; border-radius: var(--radius-lg);
+  padding: 20px; box-shadow: var(--shadow-sm);
+  border: 1px solid var(--slate-200);
+  position: sticky; top: 80px;
+}
+
+.mode-picker-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--slate-400);
+  margin-bottom: 12px;
+}
+
+.mode-btn {
+  width: 100%; padding: 12px 16px;
+  border-radius: 10px; border: none;
+  background: transparent; cursor: pointer;
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; font-weight: 500; color: var(--slate-600);
+  transition: all 0.15s; text-align: left; margin-bottom: 4px;
+}
+
+.mode-btn:hover { background: var(--blue-50); color: var(--blue-600); }
+.mode-btn.active { background: var(--blue-600); color: white; font-weight: 600; }
+
+.mode-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--slate-100); display: flex;
+  align-items: center; justify-content: center; font-size: 16px;
+  flex-shrink: 0; transition: background 0.15s;
+}
+
+.mode-btn.active .mode-icon { background: rgba(255,255,255,0.2); }
+
+.mode-desc { font-size: 11px; color: var(--slate-400); margin-top: 1px; }
+.mode-btn.active .mode-desc { color: rgba(255,255,255,0.7); }
+
+.divider { height: 1px; background: var(--slate-200); margin: 16px 0; }
+
+.topic-list-title {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--slate-400);
+  margin-bottom: 8px;
+}
+
+.topic-list { display: flex; flex-direction: column; gap: 2px; }
+
+.topic-list-btn {
+  width: 100%; padding: 8px 12px; border-radius: 8px;
+  border: none; background: transparent; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 400; color: var(--slate-600);
+  transition: all 0.15s; text-align: left;
+}
+
+.topic-list-btn:hover { background: var(--blue-50); color: var(--blue-600); }
+.topic-list-btn.selected { background: var(--blue-50); color: var(--blue-700); font-weight: 600; }
+
+.topic-pill {
+  font-size: 10px; font-weight: 600; color: var(--blue-600);
+  background: var(--blue-100); padding: 2px 6px; border-radius: 99px;
+  white-space: nowrap; flex-shrink: 0;
+}
+
+.topic-list-btn.selected .topic-pill { background: var(--blue-200); }
+
+/* CONTENT PANEL */
+.content-panel {
+  background: white; border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm); border: 1px solid var(--slate-200);
+  overflow: hidden; min-height: 400px;
+}
+
+.panel-header {
+  background: var(--blue-50); border-bottom: 1px solid var(--blue-100);
+  padding: 16px 24px; display: flex; align-items: center; justify-content: space-between;
+}
+
+.panel-kicker {
+  font-size: 11px; font-weight: 700; color: var(--blue-600);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+.panel-topic {
+  font-size: 13px; font-weight: 500; color: var(--slate-500);
+}
+
+.panel-body { padding: 28px; }
+
+.question-text {
+  font-size: 17px; font-weight: 500; color: var(--slate-900);
+  line-height: 1.65; margin-bottom: 20px;
+}
+
+.options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+
+.opt {
+  padding: 14px 18px; border-radius: 10px;
+  border: 1.5px solid var(--slate-200);
+  background: white; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; color: var(--slate-700);
+  text-align: left; transition: all 0.15s; line-height: 1.5;
+  display: flex; align-items: flex-start; gap: 12px;
+}
+
+.opt-letter {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--slate-100); color: var(--slate-500);
+  font-size: 12px; font-weight: 700; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+  margin-top: 0;
+}
+
+.opt:hover:not(:disabled) { border-color: var(--blue-400); background: var(--blue-50); }
+.opt:hover:not(:disabled) .opt-letter { background: var(--blue-500); color: white; }
+
+.opt.correct { border-color: var(--green); background: var(--green-light); }
+.opt.correct .opt-letter { background: var(--green); color: white; }
+
+.opt.wrong { border-color: var(--red); background: var(--red-light); }
+.opt.wrong .opt-letter { background: var(--red); color: white; }
+
+.opt:disabled { cursor: default; }
+
+.explanation {
+  background: var(--blue-50); border: 1px solid var(--blue-100);
+  border-radius: 10px; padding: 16px 20px;
+  font-size: 14px; color: var(--slate-700); line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.explanation strong { color: var(--blue-700); }
+
+.fc-card {
+  min-height: 220px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  cursor: pointer; gap: 16px;
+  background: linear-gradient(135deg, var(--blue-50), white);
+  border-radius: 12px; padding: 32px;
+  border: 2px dashed var(--blue-200); margin-bottom: 20px;
+  transition: all 0.2s;
+}
+
+.fc-card:hover { border-color: var(--blue-400); background: var(--blue-50); }
+
+.fc-text { font-size: 18px; font-weight: 600; color: var(--slate-800); line-height: 1.5; }
+.fc-hint { font-size: 12px; font-weight: 600; color: var(--blue-400); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.insight-card {
+  background: linear-gradient(135deg, var(--blue-50) 0%, white 100%);
+  border-radius: 12px; padding: 24px;
+  border: 1px solid var(--blue-100); margin-bottom: 20px;
+}
+
+.insight-title {
+  font-size: 18px; font-weight: 700; color: var(--blue-800);
+  margin-bottom: 12px; line-height: 1.4;
+}
+
+.insight-body { font-size: 15px; color: var(--slate-600); line-height: 1.75; }
+
+.panel-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.btn-blue {
+  background: var(--blue-600); color: white;
+  padding: 10px 20px; border-radius: 8px;
+  font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.15s;
+}
+.btn-blue:hover { background: var(--blue-700); }
+
+.btn-outline-blue {
+  background: white; color: var(--blue-600);
+  padding: 10px 20px; border-radius: 8px;
+  font-size: 14px; font-weight: 600;
+  border: 1.5px solid var(--blue-200); cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.15s;
+}
+.btn-outline-blue:hover { border-color: var(--blue-400); background: var(--blue-50); }
+
+.score-strip {
+  display: flex; gap: 20px;
+  padding: 12px 0; border-top: 1px solid var(--slate-200); margin-top: 8px;
+  font-size: 13px; color: var(--slate-500);
+}
+
+.score-strip b { color: var(--blue-700); }
+
+.empty-state {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 300px; gap: 12px;
+  color: var(--slate-400); text-align: center;
+}
+
+.empty-icon { font-size: 48px; opacity: 0.4; }
+.empty-text { font-size: 15px; font-weight: 500; }
+.empty-sub { font-size: 13px; max-width: 240px; line-height: 1.5; }
+
+.loading-state {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; min-height: 300px; flex-direction: column;
+  color: var(--slate-500); font-size: 14px;
+}
+
+.spinner {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 3px solid var(--blue-100);
+  border-top-color: var(--blue-500);
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── TOPICS SECTION ── */
+.topics-section { margin-top: 64px; }
+
+.topics-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.topic-card {
+  background: white; border-radius: var(--radius-md);
+  padding: 20px; border: 1px solid var(--slate-200);
+  box-shadow: var(--shadow-sm); transition: all 0.2s;
+  cursor: default;
+}
+
+.topic-card:hover {
+  border-color: var(--blue-300); box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.tc-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+
+.tc-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--blue-600); color: white;
+  font-size: 13px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.tc-badge {
+  font-size: 11px; font-weight: 700; color: var(--blue-600);
+  background: var(--blue-100); padding: 3px 8px; border-radius: 99px;
+}
+
+.tc-name {
+  font-size: 15px; font-weight: 700; color: var(--slate-900);
+  margin-bottom: 8px; line-height: 1.3;
+}
+
+.tc-desc { font-size: 13px; color: var(--slate-500); line-height: 1.6; }
+
+/* PROGRESS BAR IN TOPIC CARD */
+.tc-bar { margin-top: 12px; }
+.tc-bar-label { font-size: 11px; color: var(--slate-400); margin-bottom: 4px; }
+.tc-bar-track { height: 4px; background: var(--slate-100); border-radius: 99px; overflow: hidden; }
+.tc-bar-fill { height: 100%; background: var(--blue-400); border-radius: 99px; }
+
+/* ── PLAN SECTION ── */
+.plan-section { margin-top: 64px; margin-bottom: 64px; }
+
+.plan-steps {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0; position: relative;
+}
+
+.plan-step {
+  background: white; padding: 24px 20px;
+  border: 1px solid var(--slate-200); border-right: none;
+  position: relative; transition: all 0.2s;
+}
+
+.plan-step:last-child { border-right: 1px solid var(--slate-200); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.plan-step:first-child { border-radius: var(--radius-md) 0 0 var(--radius-md); }
+.plan-step:hover { background: var(--blue-50); }
+
+.plan-step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--blue-600); color: white;
+  font-size: 14px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+
+.plan-step-phase {
+  font-size: 10px; font-weight: 700; color: var(--blue-400);
+  letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px;
+}
+
+.plan-step-weeks {
+  font-size: 11px; color: var(--slate-400); margin-bottom: 12px;
+}
+
+.plan-step-title {
+  font-size: 16px; font-weight: 700; color: var(--slate-900);
+  margin-bottom: 12px;
+}
+
+.plan-step-items {
+  list-style: none; display: flex; flex-direction: column; gap: 6px;
+}
+
+.plan-step-items li {
+  font-size: 12px; color: var(--slate-500); line-height: 1.5;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+
+.plan-step-items li::before {
+  content: '✓'; color: var(--blue-400); font-size: 11px;
+  font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--slate-900); color: var(--slate-400);
+  padding: 32px; text-align: center; font-size: 13px;
+}
+
+footer strong { color: var(--blue-400); }
+
+@media (max-width: 900px) {
+  .trainer-layout { grid-template-columns: 1fr; }
+  .mode-picker { position: static; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-cards { display: none; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .plan-steps { grid-template-columns: 1fr 1fr; }
+  .plan-step { border-right: 1px solid var(--slate-200); border-radius: var(--radius-sm) !important; }
+  .hero h1 { font-size: 34px; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+  .main { padding: 32px 16px; }
+  .hero { padding: 48px 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">C</div>
+    CFA Trainer
+  </a>
+  <div class="nav-links">
+    <a href="#trainer" class="nav-link active">Trainer</a>
+    <a href="#topics-sec" class="nav-link">Topics</a>
+    <a href="#plan-sec" class="nav-link">Study Plan</a>
+  </div>
+  <a href="#trainer" class="nav-cta">Start Training</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">✦ AI-Powered · CFA Level I</div>
+      <h1>Study smarter.<br>Pass the <em>CFA L1.</em></h1>
+      <p class="hero-desc">Interactive questions, flashcards, and insights across all 10 exam topics — generated by AI in real time, in English and Portuguese.</p>
+      <div class="hero-actions">
+        <a href="#trainer" class="btn-white">Start Training →</a>
+        <a href="#plan-sec" class="btn-ghost">View Study Plan</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-icon">📚</div>
+        <div>
+          <div class="hero-card-label">Topics Covered</div>
+          <div class="hero-card-val">10 Exam Areas</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🎯</div>
+        <div>
+          <div class="hero-card-label">Study Modes</div>
+          <div class="hero-card-val">Question · Flashcard · Insight</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">🌐</div>
+        <div>
+          <div class="hero-card-label">Languages</div>
+          <div class="hero-card-val">English + Portuguese</div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-icon">⚡</div>
+        <div>
+          <div class="hero-card-label">Content</div>
+          <div class="hero-card-val">Unlimited · AI-Generated</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <span class="stat-num">10</span>
+      <span class="stat-label">Exam Topics</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">3</span>
+      <span class="stat-label">Study Modes</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">Questions Available</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">44%</span>
+      <span class="stat-label">CFA L1 Pass Rate</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TRAINER -->
+  <section id="trainer">
+    <div class="sec-header">
+      <div>
+        <div class="sec-label">Interactive Trainer</div>
+        <div class="sec-title">Choose your mode and topic</div>
+        <div class="sec-desc">Content is generated live by Claude AI — every question is unique.</div>
+      </div>
+    </div>
+
+    <div class="trainer-layout">
+      <!-- SIDE PANEL -->
+      <div class="mode-picker">
+        <div class="mode-picker-title">Study Mode</div>
+
+        <button class="mode-btn active" onclick="setMode('question')" id="mb-question">
+          <div class="mode-icon">❓</div>
+          <div>
+            <div>Question</div>
+            <div class="mode-desc">Multiple choice A/B/C</div>
+          </div>
+        </button>
+        <button class="mode-btn" onclick="setMode('flashcard')" id="mb-flashcard">
+          <div class="mode-icon">🃏</div>
+          <div>
+            <div>Flashcard</div>
+            <div class="mode-desc">Tap to reveal answer</div>
+          </div>
+        </button>
+        <button class="mode-btn" onclick="setMode('insight')" id="mb-insight">
+          <div class="mode-icon">💡</div>
+          <div>
+            <div>Insight</div>
+            <div class="mode-desc">Exam tips & key concepts</div>
+          </div>
+        </button>
+
+        <div class="divider"></div>
+
+        <div class="topic-list-title">Topic</div>
+        <div class="topic-list" id="topicList"></div>
+      </div>
+
+      <!-- CONTENT PANEL -->
+      <div class="content-panel" id="contentPanel">
+        <div class="panel-header">
+          <span class="panel-kicker" id="panelKicker">Select a topic to begin</span>
+          <span class="panel-topic" id="panelTopic">—</span>
+        </div>
+        <div class="panel-body" id="panelBody">
+          <div class="empty-state">
+            <div class="empty-icon">📖</div>
+            <div class="empty-text">Ready when you are</div>
+            <div class="empty-sub">Select a study mode and a topic from the left panel to generate content.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section class="topics-section" id="topics-sec">
+    <div class="sec-header">
+      <div>
+        <div class="sec-label">Exam Content</div>
+        <div class="sec-title">10 Topics · Know your weights</div>
+        <div class="sec-desc">Focus on high-weight areas to maximize your score.</div>
+      </div>
+    </div>
+    <div class="topics-grid" id="topicsGrid"></div>
+  </section>
+
+  <!-- PLAN -->
+  <section class="plan-section" id="plan-sec">
+    <div class="sec-header">
+      <div>
+        <div class="sec-label">Study Plan</div>
+        <div class="sec-title">6-Month Roadmap to the Exam</div>
+        <div class="sec-desc">A structured 5-phase plan from zero to exam-ready.</div>
+      </div>
+    </div>
+    <div class="plan-steps" id="planSteps"></div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <strong>CFA Trainer</strong> · Built with Claude AI by Anthropic · Not affiliated with CFA Institute · © 2026
+</footer>
+
+<script>
+const TOPICS = [
+  { id: 'ethics', name: 'Ethics & Professional Standards', weight: '15–20%', fill: 85, desc: 'Code of Ethics, Standards of Professional Conduct, GIPS. The most critical topic — never underestimate it.' },
+  { id: 'quant', name: 'Quantitative Methods', weight: '8–12%', fill: 50, desc: 'TVM, statistics, probability, regression, and time series analysis.' },
+  { id: 'econ', name: 'Economics', weight: '8–12%', fill: 50, desc: 'Micro/macroeconomics, FX, business cycles, monetary and fiscal policy.' },
+  { id: 'fsa', name: 'Financial Statement Analysis', weight: '13–17%', fill: 75, desc: 'Income statement, balance sheet, cash flows, quality analysis, IFRS vs US GAAP.' },
+  { id: 'corp', name: 'Corporate Finance', weight: '8–12%', fill: 50, desc: 'Capital structure, cost of capital (WACC), dividends, and corporate governance.' },
+  { id: 'equity', name: 'Equity Investments', weight: '10–12%', fill: 60, desc: 'Capital markets, indices, fundamental analysis, and valuation models.' },
+  { id: 'fi', name: 'Fixed Income', weight: '10–12%', fill: 60, desc: 'Bonds, yield, duration, convexity, term structure, and credit spreads.' },
+  { id: 'deriv', name: 'Derivatives', weight: '5–8%', fill: 35, desc: 'Forwards, futures, options, and swaps — payoffs, pricing, and strategies.' },
+  { id: 'alt', name: 'Alternative Investments', weight: '5–8%', fill: 35, desc: 'Hedge funds, private equity, real estate, commodities, and infrastructure.' },
+  { id: 'pm', name: 'Portfolio Management', weight: '5–8%', fill: 35, desc: 'Modern portfolio theory, CAPM, IPS, and the investment management process.' },
+];
+
+const PLAN = [
+  { phase: 'Phase 1', weeks: 'Weeks 1–4', title: 'Foundations', items: ['Complete Quantitative Methods', 'Start Economics', 'Daily flashcards', '2 hrs/day'] },
+  { phase: 'Phase 2', weeks: 'Weeks 5–10', title: 'Analysis', items: ['Financial Statement Analysis', 'Corporate Finance', 'IFRS vs US GAAP', 'Topic mock questions'] },
+  { phase: 'Phase 3', weeks: 'Weeks 11–16', title: 'Markets', items: ['Equity Investments', 'Fixed Income', 'Derivatives', 'Begin Ethics deep dive'] },
+  { phase: 'Phase 4', weeks: 'Weeks 17–20', title: 'Complement', items: ['Alternative Investments', 'Portfolio Management', 'Ethics intensive', 'Weak spot review'] },
+  { phase: 'Phase 5', weeks: 'Weeks 21–24', title: 'Final Push', items: ['Full mock exams', 'Error analysis', 'Ethics final pass', 'Timed simulations'] },
+];
+
+let mode = 'question';
+let selectedTopic = null;
+let correct = 0, total = 0;
+let fcData = null, fcSide = 'front';
+
+// Build topic list
+const topicList = document.getElementById('topicList');
+TOPICS.forEach(t => {
+  const btn = document.createElement('button');
+  btn.className = 'topic-list-btn';
+  btn.id = 'tl-' + t.id;
+  btn.innerHTML = `<span>${t.name}</span><span class="topic-pill">${t.weight}</span>`;
+  btn.onclick = () => selectTopic(t);
+  topicList.appendChild(btn);
+});
+
+// Build topics grid
+const tGrid = document.getElementById('topicsGrid');
+TOPICS.forEach((t, i) => {
+  tGrid.innerHTML += `<div class="topic-card">
+    <div class="tc-top">
+      <div class="tc-num">${String(i+1).padStart(2,'0')}</div>
+      <div class="tc-badge">${t.weight} of exam</div>
+    </div>
+    <div class="tc-name">${t.name}</div>
+    <div class="tc-desc">${t.desc}</div>
+    <div class="tc-bar">
+      <div class="tc-bar-label">Exam weight</div>
+      <div class="tc-bar-track"><div class="tc-bar-fill" style="width:${t.fill}%"></div></div>
+    </div>
+  </div>`;
+});
+
+// Build plan
+const planSteps = document.getElementById('planSteps');
+PLAN.forEach((p, i) => {
+  planSteps.innerHTML += `<div class="plan-step">
+    <div class="plan-step-num">${i+1}</div>
+    <div class="plan-step-phase">${p.phase}</div>
+    <div class="plan-step-weeks">${p.weeks}</div>
+    <div class="plan-step-title">${p.title}</div>
+    <ul class="plan-step-items">${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>
+  </div>`;
+});
+
+function setMode(m) {
+  mode = m;
+  ['question','flashcard','insight'].forEach(x => {
+    document.getElementById('mb-' + x).classList.toggle('active', x === m);
+  });
+  if (selectedTopic) generate();
+}
+
+function selectTopic(t) {
+  selectedTopic = t;
+  document.querySelectorAll('.topic-list-btn').forEach(b => b.classList.remove('selected'));
+  document.getElementById('tl-' + t.id).classList.add('selected');
+  generate();
+}
+
+function showLoading() {
+  const modeLabels = { question: 'Question', flashcard: 'Flashcard', insight: 'Insight' };
+  document.getElementById('panelKicker').textContent = modeLabels[mode];
+  document.getElementById('panelTopic').textContent = selectedTopic ? selectedTopic.name : '—';
+  document.getElementById('panelBody').innerHTML = `<div class="loading-state"><div class="spinner"></div><span>Generating content with AI…</span></div>`;
+}
+
+function generate() {
+  if (!selectedTopic) return;
+  fcSide = 'front';
+  showLoading();
+
+  const modeLabels = {
+    question: 'questão de múltipla escolha (A, B, C)',
+    flashcard: 'flashcard (FRENTE e VERSO)',
+    insight: 'insight ou dica de prova',
+  };
+
+  const prompt =
+    'Generate a CFA Level 1 ' + modeLabels[mode] + ' about "' + selectedTopic.name + '". ' +
+    (mode === 'question'
+      ? 'Show the question and three choices (A, B, C), indicate the correct answer, and explain the reasoning. '
+      : mode === 'flashcard'
+      ? 'Clearly show the FRONT (concept or question) and the BACK (answer or definition). '
+      : 'Include what is commonly tested on the exam and how to reason through it. ') +
+    'First respond fully in English (🇺🇸), then the full content in Portuguese (🇧🇷). Use clear headers.';
+
+  sendPrompt(prompt);
+}
+</script>
+</body>
+</html>
