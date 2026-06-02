@@ -871,8 +871,32 @@ function generate() {
       : 'Include what is commonly tested on the exam and how to reason through it. ') +
     'First respond fully in English (🇺🇸), then the full content in Portuguese (🇧🇷). Use clear headers.';
 
-  sendPrompt(prompt);
+  callClaude(prompt);
 }
+
+async function callClaude(prompt) {
+  try {
+    const res = await fetch("/api/claude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt })
+    });
+    const data = await res.json();
+    const text = data.content.map(i => i.text || "").join("");
+    const modeLabels = { question: "Question", flashcard: "Flashcard", insight: "Insight" };
+    document.getElementById("panelKicker").textContent = modeLabels[mode] || mode;
+    document.getElementById("panelTopic").textContent = selectedTopic ? selectedTopic.name : "—";
+    document.getElementById("panelBody").innerHTML = 
+      `<div class="question-text" style="white-space:pre-wrap;font-size:15px;font-weight:400;color:#334155;line-height:1.8">${text.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div>
+       <div class="panel-actions" style="margin-top:20px">
+         <button class="btn-blue" onclick="generate()">Next →</button>
+       </div>`;
+  } catch(e) {
+    document.getElementById("panelBody").innerHTML = 
+      `<div class="empty-state"><div class="empty-icon">⚠️</div><div class="empty-text">Error generating content</div><div class="empty-sub">${e.message}</div></div>`;
+  }
+}
+
 </script>
 </body>
 </html>
