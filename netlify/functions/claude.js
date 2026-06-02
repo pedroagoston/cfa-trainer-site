@@ -1,5 +1,4 @@
 exports.handler = async function(event, context) {
-  // Handle CORS
   const headers = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
@@ -15,13 +14,8 @@ exports.handler = async function(event, context) {
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  
   if (!apiKey) {
-    return { 
-      statusCode: 500, 
-      headers, 
-      body: JSON.stringify({ error: 'API key not configured' }) 
-    };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: 'API key not configured' }) };
   }
 
   let prompt;
@@ -41,7 +35,7 @@ exports.handler = async function(event, context) {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-haiku-4-5-20251001',
         max_tokens: 1024,
         messages: [{ role: 'user', content: prompt }],
       }),
@@ -50,20 +44,16 @@ exports.handler = async function(event, context) {
     const data = await response.json();
 
     if (!response.ok) {
-      return { 
-        statusCode: response.status, 
-        headers, 
-        body: JSON.stringify({ error: data.error?.message || 'API error', details: data }) 
+      return {
+        statusCode: response.status,
+        headers,
+        body: JSON.stringify({ error: data.error?.message || 'API error', details: data })
       };
     }
 
     return { statusCode: 200, headers, body: JSON.stringify(data) };
 
   } catch (err) {
-    return { 
-      statusCode: 500, 
-      headers, 
-      body: JSON.stringify({ error: err.message }) 
-    };
+    return { statusCode: 500, headers, body: JSON.stringify({ error: err.message }) };
   }
 };
